@@ -1,7 +1,6 @@
 import nltk
 import pandas as pd
 from typing import Callable
-import matplotlib.pyplot as plt
 from visualization import plot_label_counts, plot_num_of_stats
 
 
