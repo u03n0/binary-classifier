@@ -6,6 +6,8 @@ from pathlib import Path
 
 
 def plot_confusion_matrix(true_labels, predictions):
+    """ Plot for confusion matrix
+    """
     cm = confusion_matrix(true_labels, predictions)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Class 0', 'Class 1'], yticklabels=['Class 0', 'Class 1'])
@@ -20,6 +22,8 @@ def plot_confusion_matrix(true_labels, predictions):
 
 
 def plot_label_counts(df: pd.DataFrame):
+    """  Plot for amount of labels
+    """
     plt.pie(df['label'].value_counts(), labels=['not sustainable', 'sustainable'], autopct="%0.2f")
     output_path = Path('../reports/eda/')
     output_path.mkdir(parents=True, exist_ok=True)
@@ -29,6 +33,8 @@ def plot_label_counts(df: pd.DataFrame):
 
 
 def plot_num_of_stats(df: pd.DataFrame, column_name: str):
+    """ Plot for statistics on text.
+    """
     sns.histplot(df[df['label'] == 0][column_name])
     sns.histplot(df[df['label'] == 1][column_name], color='red')
     output_path = Path('../reports/eda/')
