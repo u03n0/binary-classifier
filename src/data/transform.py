@@ -1,7 +1,7 @@
 import pandas as pd
-from utils import create_abs_path, save_data
-from data.cleaning import clean_data
-from data.preprocessing import process_interim
+from src.utils import create_abs_path, save_data
+from src.data.cleaning import clean_data
+from src.data.preprocessing import process_interim
 
 
 def transform_data(df: pd.DataFrame)-> pd.DataFrame:

@@ -4,7 +4,7 @@ import pandas as pd
 from typing import Tuple, List
 from torch.optim import AdamW
 from torch.utils.data import DataLoader, random_split
-from models.features import build_dataset, get_features
+from src.models.features import build_dataset, get_features
 from pathlib import Path
 from tqdm import tqdm
 from transformers import BertTokenizer, BertForSequenceClassification
@@ -12,7 +12,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 
 def run_model(df: pd.DataFrame):
 
-    output_dir = Path("../models/fine_tuned_model/").resolve()
+    output_dir = Path("models/fine_tuned_model/").resolve()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     model_exists = (output_dir / 'tokenizer_config.json').is_file()
