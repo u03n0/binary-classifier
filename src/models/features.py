@@ -5,7 +5,7 @@ from typing import Tuple, List
 import torch
 
 
-def load_model_tokenizer(output_dir, device):
+def load_model_tokenizer(output_dir, device)-> Tuple:
     """ Load tokenizer and pre-trained BERT model or create new ones if not saved
     """
     try:
@@ -19,7 +19,10 @@ def load_model_tokenizer(output_dir, device):
     
     return tokenizer, model
 
-def build_dataset(tokenizer, a_tuple, device):
+def build_dataset(tokenizer, a_tuple, device)-> TensorDataset:
+    """ prepares input_ods, attention_masks and labels
+    for model.
+    """
     texts, labels =  a_tuple
     tokenized_data = tokenizer(texts, padding=True, truncation=True, return_tensors='pt')
     input_ids = tokenized_data['input_ids'].to(device)
