@@ -9,14 +9,13 @@ from data.eda import run_eda_on_data
 path = '../data/raw/internship_challenge - dataset.csv'
 
 df = pd.read_csv(path)
-# data is read to be used in model
-fs_df = transform_data(df)
-# perform EDA on final data
-run_eda_on_data(fs_df)
-# model is loaded, fine-tuned, evaluated and saved
-predictions, true_labels = run_model(fs_df)
+fs_df = transform_data(df) # data is read to be used in model
+
+run_eda_on_data(fs_df) # perform EDA on final data
+
+predictions, true_labels = run_model(fs_df) # model is loaded, fine-tuned, evaluated and saved
 
 accuracy = accuracy_score(true_labels, predictions)
 print(f"Accuracy: {accuracy * 100:.2f}%")
-# Visualization of results
-plot_confusion_matrix(predictions, true_labels)
+
+plot_confusion_matrix(predictions, true_labels) # Visualization of results
