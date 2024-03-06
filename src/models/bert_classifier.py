@@ -1,5 +1,5 @@
 import pandas as pd
-from transformers import  AdamW
+from torch.optim import AdamW
 from torch.utils.data import DataLoader, random_split
 from models.features import build_dataset, load_model_tokenizer, get_features
 from pathlib import Path
@@ -9,7 +9,7 @@ import torch
 
 def run_model(df: pd.DataFrame):
 
-    output_dir = Path("/models/fine_tuned_model/")
+    output_dir = Path("../models/fine_tuned_model/").resolve()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     tokenizer, model = load_model_tokenizer(output_dir, device)
     model.to(device)
@@ -52,6 +52,6 @@ def run_model(df: pd.DataFrame):
             true_labels.extend(batch[2].detach().cpu().numpy())
 
     
-    # model.save_pretrained(output_dir)
+    model.save_pretrained(output_dir, from_pt=True)
 
     return predictions, true_labels
